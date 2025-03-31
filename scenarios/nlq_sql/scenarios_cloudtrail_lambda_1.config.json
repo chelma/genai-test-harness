@@ -1,0 +1,5 @@
+{
+    "account_id": "XXXXXXXXXXXX",
+    "region": "us-fake-2",
+    "table_name": "amazon_security_lake_glue_db_us_fake_2.amazon_security_lake_table_us_fake_2_lambda_execution_2_0"
+}

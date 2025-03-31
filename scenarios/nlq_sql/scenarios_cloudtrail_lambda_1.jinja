@@ -1,0 +1,9 @@
+{
+    "scenarios": [
+        {
+            "scenario_id": "cloudtrail_lambda_data_events_sql_query_1",
+            "human_question": "I'm trying to identify Lambda functions with potential permission issues.  Give me the top 10 Lambda functions with the most access denied invocations in the last week.",
+            "canonical_response": "SELECT accountid as account_id,\n       region,\n       resources[0].uid as function_arn,\n       count(*) as total_access_denied\nFROM   {{ table_name }}\nWHERE  accountid in ('{{ account_id }}')\n   and region = '{{ region }}'\n   and time_dt between current_timestamp - interval '7' day\n   and current_timestamp\n   and api.response.error = 'AccessDenied'\nGROUP BY accountid, region, resources[0].uid\nORDER BY total_access_denied desc limit 10"
+        }
+    ]
+}
